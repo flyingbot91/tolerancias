@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "tolerancias"
+version = "0.1.0"
+description = "A minimal tool to work with dimensional tolerances."
+authors = ["flyingbot91 <flyingbot91@gmx.com>"]
+license = "GPL version 3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
