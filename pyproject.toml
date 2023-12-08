@@ -3,12 +3,20 @@ name = "tolerancias"
 version = "0.1.0"
 description = "A minimal tool to work with dimensional tolerances."
 authors = ["flyingbot91 <flyingbot91@gmx.com>"]
-license = "GPL version 3"
+maintainers = ["flyingbot91 <flyingbot91@gmx.com>"]
+license = "GPL-3.0-or-later"
 readme = "README.md"
+keywords = [
+	"Mechanical engineering",
+	"Dimensional tolerances",
+]
+repository = "https://github.com/flyingbot91/tolerancias"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^6.2.5"
 
 [build-system]
 requires = ["poetry-core"]
