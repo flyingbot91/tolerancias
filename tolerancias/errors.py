@@ -3,3 +3,7 @@
 
 class ToleranceError(Exception):
     """Generic tolerance error."""
+
+
+class FitError(Exception):
+    """Generic fit error."""
