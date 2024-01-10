@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 """Fit."""
 import re
+from pathlib import Path
 
-from .data import TOLERANCE_GRADES
-from .errors import FitError
+from data import TOLERANCE_GRADES
+from errors import FitError
 
 TOLERANCE_INDEXES = '|'.join(TOLERANCE_GRADES)
 HOLE_POSITIONS = 'A|B|C|CD|D|E|EF|F|FG|G|H|J|Js|K|M|N|P|R|S|T|U|V|X|Y|Z|ZA|ZB|ZC'
@@ -41,3 +42,10 @@ class Fit:
             self.values = data.groupdict()
         except AttributeError:
             raise FitError(f"Fit value '{self.value}' does not match regex '{regex}'")
+
+    def plot(self, ofile: Path) -> None:
+        # Create folder
+        ofile.parent.mkdir(parents=True, exist_ok=True)
+        # Create file
+        data = 'foobar'
+        ofile.write_text(data, encoding='utf-8')

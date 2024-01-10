@@ -2,8 +2,13 @@
 """Parser."""
 
 import argparse
+import os
 import re
 from enum import Enum
+from pathlib import Path
+from tempfile import gettempdir
+
+from fit import Fit
 
 
 class Action(Enum):
@@ -25,7 +30,12 @@ def parse_args():
     parser_plot.add_argument(
         "fitting",
         type=str,
-        help="Fitting"
+        help="Fitting value"
+    )
+    parser_plot.add_argument(
+        "--out",
+        type=Path,
+        help="Output file path"
     )
 
     args = parser.parse_args()
@@ -33,9 +43,16 @@ def parse_args():
 
 
 def main(params):
-    regex = re.compile(r'(?P<diameter>\d+)')
-    data = regex.match(params.fitting)
-    print(data.group('diameter'))
+    try:
+        if params.fitting:
+            if params.out is None:
+                params.out = Path(os.path.join(gettempdir(), f"{params.fitting}.svg"))
+
+            fit = Fit(params.fitting)
+            fit.plot(params.out )
+
+    except AttributeError:
+        raise
 
 
 if __name__ == "__main__":
