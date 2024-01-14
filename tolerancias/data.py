@@ -118,3 +118,41 @@ RANGE_DEVIATIONS = (
     (2500, 2800),
     (2800, 3150)
 )
+
+SHAFT_POSITIONS = {
+    'a': None,
+    'b': None,
+    'c': None,
+    'cd': None,
+    'd': None,
+    'e': None,
+    'ef': None,
+    'f': None,
+    'fg': None,
+    'g': None,
+    'h': None,
+    'js': None,
+    'j': (
+        ('5', '6'),
+        ('7'),
+        ('8')
+    ),
+    'k': (
+        ('4', '5', '6', '7'),
+        ('01', '0', '1', '2', '3', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18')
+    ),
+    'm': None,
+    'n': None,
+    'p': None,
+    'r': None,
+    's': None,
+    't': None,
+    'u': None,
+    'v': None,
+    'x': None,
+    'y': None,
+    'z': None,
+    'za': None,
+    'zb': None,
+    'zc': None
+}
