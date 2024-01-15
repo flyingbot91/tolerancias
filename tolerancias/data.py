@@ -236,3 +236,43 @@ HOLE_POSITIONS = {
         ('9', '10', '11', '12', '13', '14', '15', '16', '17', '18')
     )
 }
+
+value = 3
+
+SHAFT_DEVIATIONS = (
+    (270, -140, -60, -34, -20, -14, -10, -6, -4, -2, 0, value, -2, -4, -6, 0, 0, 2, 4, 6, 10, 14, None, 18, None, 20, None, 26, 32, 40, 60),
+    (-270, -140, -70, -46, -30, -20, -14, -10, -6, -4, 0, value, -2, -4, -6, 0, 0, 2, 4, 6, 10, 14, None, 18, None, 20, None, 26, 32, 40, 60),
+    (-280, -150, -80, -56, -40, -25, -18, -13, -8, -5, 0, value, -2, -4, None, 1, 0, 4, 8, 12, 15, 19, None, 23, None, 28, None, 35, 42, 50, 80),
+    (-290, -150, -95, None, -50, -32, None, -16, None, -6, 0, value, -2, -5, None, 1, 0, 6, 10, 15, 19, 23, None, 28, None, 34, None, 42, 52, 67, 97),
+    (-290, -150, -95, None, -50, -32, None, -16, None, -6, 0, value, -3, -6, None, 1, 0, 7, 12, 18, 23, 28, None, 33, None, 40, None, 50, 64, 90, 130),
+    (-300, -160, -110, None, -65, -40, None, -20, None, -7, 0, value, -3, -6, None, 1, 0, 7, 12, 18, 23, 28, None, 33, 39, 45, None, 60, 77, 108, 150),
+)
+"""
+(-300, -160, -110, None, -65, -40,None,  -20, None, -7, 0, value),
+(-310, -170, -120, None, -80, -50, None, -25, None, -9, 0, value),
+(-320, -180, -130, None, -80, -50, None, -25, None, -9, 0, value),
+(-340, -190, -140, None, -100, -60, None, -30, None, -10, 0, value),
+(-360, -200, -150, None, -100, -60, None, -30, None, -10, 0, value),
+(-380, -220, -170, None, -120, -72, None, -36, None, -12, 0, value),
+(-410, -240, -180, None, -120, -72, None, -36, None, -12, 0, value),
+(-460, -260, -200, None, -145, -85, None, -43, None, -14, 0, value),
+(-520, -280, -210, None, -145, -85, None, -43, None, -14, 0, value),
+(-580, -310, -230, None, -145, -85, None, -43, None, -14, 0, value),
+(-660, -340, -240, None, -170, -100, None, -50, None, -15, 0, value),
+(-740, -380, -260, None, -170, -100, None, -50, None, -15, 0, value),
+(-820, -420, -280, None, -170, -100, None, -50, None, -15, 0, value),
+(-920, -460, -300, None, -190, -110, None, -56, None, -17, 0, value),
+(-1050, -540, -330, None, -190, -110, None, -56, None, -17, 0, value),
+(-1200, -600, -360, None, -210, -125, None, -62, None, -18, 0, value),
+(-1350, -680, -400, None, -210, -125, None, -62, None, -18, 0, value),
+(1500, -760, -440, None,  -230, -135, None, -68, None, -20, 0, value),
+(1650, -840, -480, None,  -230, -135, None, -68, None, -20, 0, value),
+(None, None, None, None, -260, -145, None, -76, None, -22, 0, value),
+(None, None, None, None, -290, -160, None, -80, None, -24, 0, value),
+(None, None, None, None, -320, -170, None, -86, None, -25, 0, value),
+(None, None, None, None, -350, -195, None, -98, None, -28, 0, value),
+(None, None, None, None, -390, -220, None, -110, None, -30, 0, value),
+(None, None, None, None, -430, -240, None, -120, None, -32, 0, value),
+(None, None, None, None, -480, -260, None, -130, None, -34, 0, value),
+(None, None, None, None, -520, -290, None, -145, None, -38, 0, value),
+"""
