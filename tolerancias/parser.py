@@ -35,7 +35,7 @@ def parse_args():
     parser_plot.add_argument(
         "--out",
         type=Path,
-        help="Output file path"
+        help="Output file folder"
     )
 
     args = parser.parse_args()
@@ -46,7 +46,7 @@ def main(params):
     try:
         if params.fitting:
             if params.out is None:
-                params.out = Path(os.path.join(gettempdir(), f"{params.fitting}.svg"))
+                params.out = Path(os.path.join(gettempdir(), f"{params.fitting}.html"))
 
             fit = Fit(params.fitting)
             fit.plot(params.out )
