@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 """Fit."""
+import os
 import re
 from pathlib import Path
+from tempfile import gettempdir
+
+from typing import Union
 
 from data import TOLERANCE_GRADES
 from errors import FitError
@@ -43,9 +47,30 @@ class Fit:
         except AttributeError:
             raise FitError(f"Fit value '{self.value}' does not match regex '{regex}'")
 
-    def plot(self, ofile: Path) -> None:
+    def plot(self, folder: Union[None, Path], filetype: str) -> None:
+        if folder is None:
+            ofile = Path(os.path.join(gettempdir(), f"{self.value}.{filetype}"))
+        else:
+            ofile = Path(os.path.join(folder, f"{self.value}.{filetype}"))
+
         # Create folder
         ofile.parent.mkdir(parents=True, exist_ok=True)
+
+        if filetype == 'html':
+            data = """
+            <!DOCTYPE html>
+            <html>
+                <body>
+                    <svg>
+                        <rect x="10" y="30" width="50" height="100"/>
+                        <rect x="100" y="120" width="50" height="100"/>
+                        <line x1="0" y1="110" x2="160" y2="110" style="stroke:rgb(0,0,0);stroke-width:2"/>
+                    </svg>
+                </body>
+            </html>
+            """
+        else:
+            data = ""
+
         # Create file
-        data = 'foobar'
         ofile.write_text(data, encoding='utf-8')

@@ -3,10 +3,8 @@
 
 import argparse
 import os
-import re
 from enum import Enum
 from pathlib import Path
-from tempfile import gettempdir
 
 from fit import Fit
 
@@ -52,11 +50,8 @@ def parse_args():
 def main(params):
     try:
         if params.fitting:
-            if params.out is None:
-                params.out = Path(os.path.join(gettempdir(), f"{params.fitting}.{params.type}"))
-
             fit = Fit(params.fitting)
-            fit.plot(params.out)
+            fit.plot(params.out, params.type)
 
     except AttributeError:
         raise
