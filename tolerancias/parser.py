@@ -37,6 +37,13 @@ def parse_args():
         type=Path,
         help="Output file folder"
     )
+    parser_plot.add_argument(
+        "--type",
+        default="html",
+        nargs="?",
+        choices=["html"],
+        help="File type"
+    )
 
     args = parser.parse_args()
     return args
@@ -46,10 +53,10 @@ def main(params):
     try:
         if params.fitting:
             if params.out is None:
-                params.out = Path(os.path.join(gettempdir(), f"{params.fitting}.html"))
+                params.out = Path(os.path.join(gettempdir(), f"{params.fitting}.{params.type}"))
 
             fit = Fit(params.fitting)
-            fit.plot(params.out )
+            fit.plot(params.out)
 
     except AttributeError:
         raise
