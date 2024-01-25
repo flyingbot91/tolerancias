@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 from tempfile import gettempdir
 
-from typing import Union
+from typing import Tuple, Union
 
 from data import TOLERANCE_GRADES
 from errors import FitError
@@ -15,6 +15,15 @@ HOLE_POSITIONS = 'A|B|C|CD|D|E|EF|F|FG|G|H|J|Js|K|M|N|P|R|S|T|U|V|X|Y|Z|ZA|ZB|ZC
 SHAFT_POSITIONS = 'a|b|c|cd|d|e|ef|f|fg|g|h|j|js|k|m|n|p|r|s|t|u|v|x|y|z|z|za|zb|zc'
 LALIGN = 20
 RALIGN = 5
+
+# These values are to be calculated
+Ds = 70
+Di = 20
+ds = -10
+di = -30
+margin = 5
+width = 50
+x_axis = 130
 
 
 class Fit:
@@ -47,6 +56,35 @@ class Fit:
         except AttributeError:
             raise FitError(f"Fit value '{self.value}' does not match regex '{regex}'")
 
+    def determine_baseline_y_position(self) -> Tuple[int, int, int]:
+        margin = 10
+
+        if Ds > 0:
+            if Ds > ds:
+                y_coord = margin + Ds
+                y_shaft = margin
+                y_axis = y_coord - ds
+            else:
+                y_coord = margin + ds
+                y_shaft = y_coord + Ds
+                y_axis = margin
+        else:
+            if Ds > ds:
+                y_coord = margin
+                y_shaft = y_coord - Ds
+                y_axis =  y_coord - ds
+            else:
+                if ds > 0:
+                    y_coord = margin + ds
+                    y_shaft = y_coord - Ds
+                    y_axis = margin
+                else:
+                    y_coord = margin
+                    y_shaft = y_coord - Ds
+                    y_axis = y_coord + ds
+
+        return y_coord, y_shaft, y_axis
+
     def plot(self, folder: Union[None, Path], filetype: str) -> None:
         if filetype == 'svg':
             extension = 'xml'
@@ -59,12 +97,17 @@ class Fit:
         # Create folder
         ofile.parent.mkdir(parents=True, exist_ok=True)
 
+        y_coord, y_shaft, y_axis = self.determine_baseline_y_position()
+
         if filetype == 'svg':
-            data = """
+            data = f"""
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="30" width="50" height="100"/>
-                <rect x="100" y="120" width="50" height="100"/>
-                <line x1="0" y1="110" x2="160" y2="110" style="stroke:rgb(0,0,0);stroke-width:2"/>
+                <!-- SHAFT -->
+                <rect x="{margin}" y="{y_shaft}" width="{width}" height="{y_shaft + (Ds - Di)}"/>
+                <!-- AXIS -->
+                <rect x="{x_axis}" y="{y_axis}" width="{width}" height="{y_axis + (ds - di)}"/>
+                <!-- BASELINE -->
+                <line x1="{margin}" y1="{y_coord}" x2="{x_axis + width}" y2="{y_coord}" style="stroke:rgb(0,0,0);stroke-width:2"/>
             </svg>
             """
         else:
