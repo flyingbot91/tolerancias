@@ -48,26 +48,24 @@ class Fit:
             raise FitError(f"Fit value '{self.value}' does not match regex '{regex}'")
 
     def plot(self, folder: Union[None, Path], filetype: str) -> None:
+        if filetype == 'svg':
+            extension = 'xml'
+
         if folder is None:
-            ofile = Path(os.path.join(gettempdir(), f"{self.value}.{filetype}"))
+            ofile = Path(os.path.join(gettempdir(), f"{self.value}.{extension}"))
         else:
-            ofile = Path(os.path.join(folder, f"{self.value}.{filetype}"))
+            ofile = Path(os.path.join(folder, f"{self.value}.{extension}"))
 
         # Create folder
         ofile.parent.mkdir(parents=True, exist_ok=True)
 
-        if filetype == 'html':
+        if filetype == 'svg':
             data = """
-            <!DOCTYPE html>
-            <html>
-                <body>
-                    <svg>
-                        <rect x="10" y="30" width="50" height="100"/>
-                        <rect x="100" y="120" width="50" height="100"/>
-                        <line x1="0" y1="110" x2="160" y2="110" style="stroke:rgb(0,0,0);stroke-width:2"/>
-                    </svg>
-                </body>
-            </html>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="30" width="50" height="100"/>
+                <rect x="100" y="120" width="50" height="100"/>
+                <line x1="0" y1="110" x2="160" y2="110" style="stroke:rgb(0,0,0);stroke-width:2"/>
+            </svg>
             """
         else:
             data = ""

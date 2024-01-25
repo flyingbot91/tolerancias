@@ -37,9 +37,9 @@ def parse_args():
     )
     parser_plot.add_argument(
         "--type",
-        default="html",
+        default="svg",
         nargs="?",
-        choices=["html"],
+        choices=["svg"],
         help="File type"
     )
 
